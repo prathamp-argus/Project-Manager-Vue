@@ -20,33 +20,36 @@ router.post('/projects', auth, async (req, res) => {
 
 // GET /projects?limit=2&skip=2
 // GET /projects?completed=true
-router.get('/projects', auth, async (req, res) => {
-    const match = {}
-    const sort  = {}
+router.get('/projects', async (req, res) => {
+    // const match = {}
+    // const sort  = {}
 
-    if (req.query.completed) {
-        match.completed = req.query.completed === 'true'
-    }
-    if (req.query.sortBy) {
-        const parts = req.query.sortBy.split(':')
-        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
-    }
+    // if (req.query.completed) {
+    //     match.completed = req.query.completed === 'true'
+    // }
+    // if (req.query.sortBy) {
+    //     const parts = req.query.sortBy.split(':')
+    //     sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+    // }
+    // console.log(req.user)
 
-
-    try {
-        await req.user.populate({
-            path: 'projects',
-            match,
-            options: {
-                limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip),
-                sort
-            }
+    // try {
+    //     await req.user.populate({
+    //         path: 'projects',
+    //         match,
+    //         options: {
+    //             limit: parseInt(req.query.limit),
+    //             skip: parseInt(req.query.skip),
+    //             sort
+    //         }
             
-        })
-        res.send(req.user.projects)
-    } catch (e) {
-        res.status(500).send()
+    //     })
+    //     res.send(req.user.projects)
+    try{
+        const projects = await Project.find()
+        res.status(200).send(projects)
+    }catch (e) {
+        res.status(500).send(e.message)
     }
 })
 

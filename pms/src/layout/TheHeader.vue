@@ -32,7 +32,7 @@
           <router-link to="/projects" class="nav-link active" aria-current="page" >Projects</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/project/new" class="nav-link" >Create Project</router-link>
+          <router-link to="/projects/new" class="nav-link" >Create Project</router-link>
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">

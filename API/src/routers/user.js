@@ -1,10 +1,11 @@
 
 const express = require('express')
-// const multer = require('multer')
+
+
 const User = require('../model/user')
 const auth = require('../middleware/auth')
 const jwt = require('jsonwebtoken')
-// const sharp = require('sharp')
+
 
 const router = new express.Router()
 

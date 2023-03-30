@@ -12,8 +12,10 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 
+// app.component(BaseSpinner)
 app.component(BaseSpinner)
 app.component(BaseCard)
-app.component(BaseButton)
+app.component('BaseButton',BaseButton)
+
 
 app.mount('#app')

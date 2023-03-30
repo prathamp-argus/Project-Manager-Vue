@@ -7,13 +7,16 @@
       
       <div class="actions">
         <base-button link :to="projectDetailsLink">View Details</base-button>
+        <!-- <router-link :to="projectDetailsLink">View Detail</router-link> -->
       </div>
     </li>
   </template>
   
   <script>
+  // import BaseButton from '@/ui/BaseButton.vue';
 export default {
   props: ['id','projectTitle','completed','description'],
+  // components : {BaseButton},
   
   computed: {
     projectDetailsLink() {

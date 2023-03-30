@@ -41,7 +41,7 @@ export default{
     async loadProjects() {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('coaches/loadCoaches');
+        await this.$store.dispatch('projects/loadProjects');
       } catch (error) {
         this.error = error.message || 'Something went wrong!';
       }

@@ -31,6 +31,7 @@ export default{
 
         projectList(){
                 const projects= this.$store.getters['projects/projects']
+                console.log(projects)
                 return projects
             }
     },

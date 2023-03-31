@@ -12,8 +12,8 @@ const router = new express.Router()
 
 //for signup
 router.post('/users', async (req, res) => {
+    console.log({...req.body})
     const user = new User(req.body)
-
     try {
         await user.save()
         const token = await user.generateAuthToken()
@@ -25,11 +25,13 @@ router.post('/users', async (req, res) => {
 
 // for login
 router.post('/users/login', async (req, res) => {
+    console.log(req.body)
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
         const token = await user.generateAuthToken()
         res.send({ user, token })
     } catch (e) {
+        // console.log(e)
         res.status(400).send()
     }
 })

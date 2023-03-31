@@ -1,6 +1,12 @@
 export default {
-    setAuth(state, payload) {
-        state.isLoggedIn = payload.isAuth;
-        
-    }
+    setUser(state, payload) {
+        // console.log(payload)
+        state.userId = payload.userId;
+        // state.didLogout = false
+        state.token = payload.token
+      },
+      didLogout(state) {
+        state.didLogout = true
+      },
+
 }

@@ -13,8 +13,8 @@ app.use(router)
 app.use(store)
 
 // app.component(BaseSpinner)
-app.component(BaseSpinner)
-app.component(BaseCard)
+app.component('BaseSpinner',BaseSpinner)
+app.component('BaseCard',BaseCard)
 app.component('BaseButton',BaseButton)
 
 

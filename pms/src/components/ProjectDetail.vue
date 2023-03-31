@@ -29,10 +29,11 @@ export default{
         }
     },
     created() {
-        console.log(typeof this.id)
+        
         this.selectedProject = this.$store.getters['projects/projects'].find(
-        (project) => project.id === +this.id
+        (project) => project.id === this.id
         );
+        // console.log(this.selectedProject)
     },
     
 }</script>

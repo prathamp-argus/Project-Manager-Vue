@@ -6,8 +6,11 @@ export default {
   state() {
     return {
       userId: null,
+      name:'',
+      email:'',
+      password:'',
       token: null,
-      isLoggedin:false,
+      didLogout:false,
     
     };
   },

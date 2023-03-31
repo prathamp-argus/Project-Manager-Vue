@@ -1,5 +1,15 @@
 export default {
-    userIsAuthenticated(state) {
-        return state.isLoggedIn;  
-    }
+   
+    userId(state) {
+        return state.userId;
+      },
+      token(state) {
+        return state.token;
+      },
+      isAuthenticated(state) {
+        return !!state.token
+      },
+      didLogout(state) {
+        return state.didLogout
+      }
 }

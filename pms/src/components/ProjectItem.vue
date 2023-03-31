@@ -6,7 +6,8 @@
 
       
       <div class="actions">
-        <base-button link :to="projectDetailsLink">View Details</base-button>
+        <base-button link :to="projectDetailsLink">View Project</base-button>
+        <base-button link :to="projectDetailsLink">Delete Project</base-button>
         <!-- <router-link :to="projectDetailsLink">View Detail</router-link> -->
       </div>
     </li>

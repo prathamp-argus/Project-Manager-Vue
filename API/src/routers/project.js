@@ -20,7 +20,7 @@ router.post('/projects', auth, async (req, res) => {
 
 // GET /projects?limit=2&skip=2
 // GET /projects?completed=true
-router.get('/projects', async (req, res) => {
+router.get('/projects', auth,async (req, res) => {
     // const match = {}
     // const sort  = {}
 
@@ -45,8 +45,10 @@ router.get('/projects', async (req, res) => {
             
     //     })
     //     res.send(req.user.projects)
+    const userId = req.user.id
+    console.log(userId)
     try{
-        const projects = await Project.find()
+        const projects = await Project.find({owner:userId})
         res.status(200).send(projects)
     }catch (e) {
         res.status(500).send(e.message)

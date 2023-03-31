@@ -1,5 +1,6 @@
 export default {
     projects(state) {
+        console.log(state)
         return state.projects;
       },
       hasProjects(state) {

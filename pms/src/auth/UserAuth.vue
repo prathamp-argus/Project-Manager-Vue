@@ -1,13 +1,17 @@
 <template>
     <div>
-      <base-dialog :show="!!error" title="An error occurred" @close="handleError">
+      <!-- <base-dialog :show="!!error" title="An error occurred" @close="handleError">
         <p>{{ error }}</p>
       </base-dialog>
       <base-dialog :show="isLoading" title="Authenticating..." fixed>
         <base-spinner></base-spinner>
-      </base-dialog>
+      </base-dialog> -->
       <base-card>
         <form @submit.prevent="submitForm">
+          <div class="form-control" v-if="mode==='signup'">
+            <label for="name">Name</label>
+            <input type="text" id="name" v-model.trim="name" />
+          </div>
           <div class="form-control">
             <label for="email">E-Mail</label>
             <input type="email" id="email" v-model.trim="email" />
@@ -28,6 +32,7 @@
   export default {
     data() {
       return {
+        name:'',
         email: '',
         password: '',
         formIsValid: true,
@@ -67,10 +72,11 @@
         this.isLoading = true;
   
         const actionPayload = {
+          name:this.name,
           email: this.email,
           password: this.password,
         };
-  
+        // console.log(actionPayload)
         try {
           if (this.mode === 'login') {
             await this.$store.dispatch('login', actionPayload);

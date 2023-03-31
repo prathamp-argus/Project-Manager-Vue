@@ -11,7 +11,9 @@ import "/node_modules/bootstrap/dist/js/bootstrap.js"
 import TheHeader from './layout/TheHeader.vue';
 export default {
   name: 'PMS',
-  components: { TheHeader
+  components: { TheHeader },
+created(){
+  this.$store.dispatch('autologin')
 }
 }
 </script>

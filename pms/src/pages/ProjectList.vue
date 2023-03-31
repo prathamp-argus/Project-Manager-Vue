@@ -1,16 +1,24 @@
 <template>
     <div>
-            <base-spinner v-if="isLoading"></base-spinner>
-            <ul v-if="!isLoading">
 
+        <div v-if="projectList.length>0">
+            <base-spinner v-if="isLoading"></base-spinner>
+            <ul v-if="!isLoading" class="container">
+                
                 <project-item  
                 v-for="project in projectList"
                 :id="project.id"
                 :key="project.id"
                 :projectTitle="project.projectTitle"
-                :description="project.description"></project-item>
-        </ul>
+                :description="project.description"
+                :completed="project.completed"></project-item>
+            </ul>
+        </div>
+    <div v-else class="container text-center mt-5 pt-5">
+        <h2>Hey buddy, create some projects and work on it</h2>
+        <router-link :to="createProjectPath" class="link-dark">Click here to create some projects</router-link>
     </div>
+</div>
     
 </template>
 
@@ -21,6 +29,7 @@ export default{
     components:{
         ProjectItem
     },
+
     data() {
         return{
             isLoading : false,
@@ -30,13 +39,15 @@ export default{
     computed : {
 
         projectList(){
-                const projects= this.$store.getters['projects/projects']
-                console.log(projects)
-                return projects
-            }
+                return this.$store.getters['projects/projects']
+            },
+        createProjectPath(){
+            return this.$route.path + "/new"
+        }
     },
     created(){
         this.loadProjects();
+
     },
     methods :{
     async loadProjects() {
@@ -51,3 +62,9 @@ export default{
     }
 }
 </script>
+
+<style scoped>
+ul{
+    list-style: none;
+}
+</style>

@@ -1,28 +1,36 @@
 <template>
-    <form @submit.prevent="createProject">
-          <div class="form-control">
-            <label for="title">Project Title</label>
-            <input type="title" id="title" v-model.trim="title"/>
+    <div class="container mt-5">
+
+        <form @submit.prevent="createProject">
+            <div class="form-control mt-2">
+                <label for="title" class="form-label">Project Title</label>
+            <input type="title" id="title" v-model.trim="title" class="form-control"/>
           </div>
-          <div class="form-control">
-            <label for="description">description</label>
-            <textarea id="description" v-model.trim="description"> </textarea>
+          <div class="form-control mt-2">
+              <label for="description" class="form-label">Description of the project</label>
+            <textarea id="description" v-model.trim="description" class="form-control"> </textarea>
           </div>
-          <div class="form-control">
-            <label for="completed">completed ?</label>
-            <!-- < v-model.trim="description"> </textarea> -->
-            <input type="radio" name="completed" value="yes" v-model.trim="completed">
-            <label for="completed">Yes</label>
-            <input type="radio" name="completed" value="no" v-model.trim="completed" checked>
-            <label for="completed">No</label>
+          <div class="form-control mt-2">
+            <label for="completed" class="form-label me-5" >Completed ?</label>
+            <div class="form-check ">
+                <input type="radio" name="completed" value="yes" v-model.trim="completed" class="form-check-input me-2">
+                <label for="completed" class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check ">
+                <input type="radio" name="completed" value="no" v-model.trim="completed" checked class="form-check-input me-2">
+                <label for="completed" class="form-check-label">No</label>
+            </div>
           </div>
         
-          <button>submit</button>
-      
+          <base-button class="mt-3" >submit</base-button>
+          
         </form>
-</template>
+    </div>
+    </template>
 <script>
+import BaseButton from '../ui/BaseButton.vue'
 export default{
+  components: { BaseButton },
     data(){
         return {
             title  : '',

@@ -40,7 +40,6 @@ export default {
 
   async loadProjects(context) {
     try {
-      // console.log("called")
       const token = context.rootGetters.token;
       const response = await fetch("http://localhost:3000/projects", {
         headers: {
@@ -49,7 +48,6 @@ export default {
         },
       });
       // console.log(response)
-      // const response = await this.$http.get("http://localhost:3000/projects")
       const responseData = await response.json();
       if (!response.ok) {
         const error = new Error(responseData.message || "Failed to fetch!");
@@ -71,6 +69,28 @@ export default {
       }
       // console.log(projects);
       context.commit("setProjects", projects);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  async deleteProject(context, payload) {
+    try {
+      const token = context.rootGetters.token;
+      // const id = context.rootGetters.projects.id;
+      const id = payload;
+      console.log(payload);
+      const response = await fetch(`http://localhost:3000/projects/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const responseData = await response.json();
+      console.log(responseData);
+      context.commit("removeProject", responseData);
     } catch (error) {
       console.log(error);
     }

@@ -37,10 +37,10 @@
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <router-link to="/auth" class="nav-link" >Login</router-link>
+          <router-link to="/auth" class="nav-link" v-if="!isLoggedIn">Login</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/auth" class="nav-link" >Sign-up</router-link>
+          <router-link to="/auth" class="nav-link" v-if="isLoggedIn" @click="logout">Log-out</router-link>
         </li>
       </ul>
     </div>
@@ -49,11 +49,13 @@
   </template>
 
   <script>
+
+
   export default{
     computed: {
     isLoggedIn() {
-      // return this.$store.getters.isAuthenticated
-      return true
+       return this.$store.getters.isAuthenticated
+      // return true
     }
   },
   methods: {

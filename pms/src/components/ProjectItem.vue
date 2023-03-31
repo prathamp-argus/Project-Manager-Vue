@@ -1,16 +1,20 @@
 <template>
-    <li>
-      <h3>{{ projectTitle }}</h3> 
-      <h6>{{ description }}</h6>
-      <h6>{{ completed }}</h6>
+    <div class="container">
 
-      
-      <div class="actions">
-        <base-button link :to="projectDetailsLink">View Project</base-button>
-        <base-button link :to="projectDetailsLink">Delete Project</base-button>
-        <!-- <router-link :to="projectDetailsLink">View Detail</router-link> -->
-      </div>
-    </li>
+      <li>
+        <h3>{{ projectTitle }}</h3> 
+        <h6>{{ description }}</h6>
+        <h6>Completed : {{ completedString }}</h6>
+        
+        
+        
+        <div class="actions">
+          <base-button link :to="projectDetailsLink">View Project</base-button>
+          <base-button  @click="deleteProject">Delete Project</base-button>
+          <!-- <router-link :to="projectDetailsLink">View Detail</router-link> -->
+        </div>
+      </li>
+    </div>
   </template>
   
   <script>
@@ -23,7 +27,18 @@ export default {
     projectDetailsLink() {
       return this.$route.path + '/' + this.id; 
     },
+    completedString(){
+      return this.completed===true ? 'Yes' : 'No' 
+    }
   },
+  methods:{
+    deleteProject(){
+      
+      this.$store.dispatch('projects/deleteProject',this.id)
+      // this.$router.replace('/projects')
+      
+    }
+  }
 };
 </script>
   
